@@ -20,9 +20,9 @@ zzz_cc_politics.1 = {
 	
 	trigger = {
 		OR = {
-			NOT = {	has_law = law_type:law_theocracy }
-			has_law = law_type:law_total_separation
-			has_law = law_type:law_state_atheism
+			NOT = {	has_law_or_variant = law_type:law_theocracy }
+			has_law_or_variant = law_type:law_total_separation
+			has_law_or_variant = law_type:law_state_atheism
 		}
 		ig:ig_armed_forces = {
 			OR = {
@@ -81,7 +81,7 @@ zzz_cc_politics.1 = {
 			}
 			add_modifier = {
 				name = ig_power_challenged
-				days = normal_modifier_time
+				months = normal_modifier_time
 			}
 		}
 	}
@@ -127,7 +127,7 @@ zzz_cc_politics.2 = {
 		}
 		add_modifier = {
 			name = converter_dead_immortal
-			days = very_long_modifier_time
+			months = very_long_modifier_time
 			is_decaying = yes
 		}
 	}
@@ -249,7 +249,7 @@ zzz_cc_politics.4 = {
 			}
 			add_modifier = {
 				name = converter_deposed_immortal
-				days = very_long_modifier_time
+				months = very_long_modifier_time
 				is_decaying = yes
 			}
 		}
@@ -265,13 +265,13 @@ zzz_cc_politics.4 = {
 			limit = { has_trait = converter_immortal }
 			add_modifier = {
 				name = garibaldi_popularity
-				days = stupidly_long_modifier_time
+				months = stupidly_long_modifier_time
 				is_decaying = yes
 			}
 			interest_group = {
 				add_modifier = {
 					name = empowered_by_monarchists
-					days = very_long_modifier_time
+					months = very_long_modifier_time
 					is_decaying = yes
 				}
 			}
@@ -284,4 +284,5 @@ zzz_cc_politics.4 = {
 			}
 		}
 	}
+
 }
