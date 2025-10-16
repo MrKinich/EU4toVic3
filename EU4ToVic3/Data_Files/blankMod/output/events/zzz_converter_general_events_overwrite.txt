@@ -1,4 +1,4 @@
-﻿namespace = commander_events
+namespace = commander_events
 namespace = communism
 namespace = crime_events
 namespace = german_unification
@@ -216,9 +216,9 @@ communism.8 = {
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
 
 	trigger = {
-		has_law = law_type:law_council_republic
+		has_law_or_variant = law_type:law_council_republic
 		NOT = {	has_variable = red_army_var }
-		ig:ig_armed_forces = {
+		ig:ig_armed_forces ?= {
 			leader = {
 				OR = {
 					has_ideology = ideology:ideology_communist
@@ -229,7 +229,7 @@ communism.8 = {
 	}
 
 	immediate = {
-		ig:ig_armed_forces = {
+		ig:ig_armed_forces ?= {
 			save_scope_as = red_army_ig
 			leader = {
 				save_scope_as = red_army_general
@@ -240,7 +240,7 @@ communism.8 = {
 
 	option = {
 		name = communism.8.a
-		ig:ig_armed_forces = {
+		ig:ig_armed_forces ?= {
 			custom_tooltip = red_army_tt
 			hidden_effect = {
 				set_interest_group_name = ig_red_army
@@ -363,7 +363,7 @@ crime_events.11 = { #The Criminal was caught
 		set_variable = serial_killer_caught
 		if = {
 			limit = {
-				has_law = law_type:law_outlawed_dissent
+				has_law_or_variant = law_type:law_outlawed_dissent
 			}
 			scope:important_killer = { # small popularity hit
 				add_modifier = {
@@ -373,7 +373,7 @@ crime_events.11 = { #The Criminal was caught
 		}
 		else_if = {
 			limit = {
-				has_law = law_type:law_censorship
+				has_law_or_variant = law_type:law_censorship
 			}
 			scope:important_killer = { # moderate popularity hit
 				add_modifier = {
@@ -415,7 +415,7 @@ german_unification.3 = {
 
 	trigger = {
 		NOT = { has_global_variable = bismarck_variable }
-		ig:ig_landowners = {
+		ig:ig_landowners ?= {
 			is_powerful = yes
 			is_in_government = yes
 		}
@@ -440,7 +440,7 @@ german_unification.3 = {
 			}
 		}
 		### Converter ###
-		ig:ig_landowners = {
+		ig:ig_landowners ?= {
 			save_scope_as = junkers
 			leader = {
 				save_scope_as = bismarck_scope
@@ -460,6 +460,13 @@ german_unification.3 = {
 			add_modifier = {
 				name = bismarck_popular
 			}
+			if = {
+				limit = {
+					has_variable = memento_mori_immunity
+				}
+				remove_variable = memento_mori_immunity
+			}
+			set_variable = { name = memento_mori_immunity years = 30 }
 		}
 		add_modifier = {
 			name = realpolitik
@@ -519,7 +526,7 @@ marx_events.1 = {
 	option = { #support socialism not marx
 		name = marx_events.1.a
 		default_option = yes
-		ig:ig_trade_unions = {
+		ig:ig_trade_unions ?= {
 			add_modifier = {
 				name = modifier_supported_marx
 				days = normal_modifier_time
@@ -530,7 +537,7 @@ marx_events.1 = {
 
 	option = { #promote him / marxista porque me va la marxa
 		name = marx_events.1.b
-		ig:ig_trade_unions = {
+		ig:ig_trade_unions ?= {
 			add_modifier = {
 				name = modifier_promoted_marx
 				days = normal_modifier_time
@@ -541,7 +548,7 @@ marx_events.1 = {
 
 	option = { #get rid of this man
 		name = marx_events.1.c
-		ig:ig_trade_unions = {
+		ig:ig_trade_unions ?= {
 			add_modifier = {
 				name = modifier_ditched_marx
 				days = normal_modifier_time
@@ -582,7 +589,7 @@ oscar_wilde_events.1 = {
 
 	trigger = {
 		country_is_in_europe = yes
-		ig:ig_intelligentsia = {
+		ig:ig_intelligentsia ?= {
 			is_marginal = no
 		}
 		game_date >= 1880
@@ -666,7 +673,7 @@ oscar_wilde_events.1 = {
 		default_option = yes
 		name = oscar_wilde_events.1.a
 		custom_tooltip = oscar_wilde_tt
-		ig:ig_intelligentsia = {
+		ig:ig_intelligentsia ?= {
 			add_modifier = {
 				name = happy_arts_protected
 				days = normal_modifier_time
@@ -731,13 +738,13 @@ prostitution.3 = {
 	trigger = {
 		NOT = { has_variable = police_cooldown }
 		any_primary_culture = { # doesn't fit that well outside of the West
-			has_discrimination_trait = european_heritage
+			has_discrimination_trait_group = heritage_group_european
 		}
 		institution_investment_level = {
 			institution = institution_police
 			value = 3
 		}
-		NOT = { has_law = law_type:law_outlawed_dissent }
+		NOT = { has_law_or_variant = law_type:law_outlawed_dissent }
 		any_interest_group = {
 			is_in_government = yes
 			OR = {
@@ -813,14 +820,14 @@ prostitution.3 = {
 				modifier = {
 					if = {
 						limit = {
-							has_law = law_type:law_protected_speech
+							has_law_or_variant = law_type:law_protected_speech
 						}
 						add = 25
 					}
 				}
 				if = {
 					limit = {
-						NOT = { has_law = law_type:law_censorship }
+						NOT = { has_law_or_variant = law_type:law_censorship }
 					}
 					add_modifier = {
 						name = coverup_discovered
@@ -838,7 +845,7 @@ prostitution.3 = {
 				modifier = {
 					if = {
 						limit = {
-							has_law = law_type:law_censorship
+							has_law_or_variant = law_type:law_censorship
 						}
 						add = 25
 					}
@@ -1188,8 +1195,8 @@ colonial_administration_events.1 = {
 		highlighted_option = yes
 		trigger = {
 			OR = {
-				has_law = law_type:law_state_religion
-				has_law = law_type:law_freedom_of_conscience
+				has_law_or_variant = law_type:law_state_religion
+				has_law_or_variant = law_type:law_freedom_of_conscience
 			}
 		}
 		custom_tooltip = {
@@ -1292,9 +1299,9 @@ colonial_administration_events.1 = {
 		highlighted_option = yes
 		trigger = {
 			OR = {
-				has_law = law_type:law_no_workers_rights
+				has_law_or_variant = law_type:law_no_workers_rights
 				NOT = {
-					has_law = law_type:law_slavery_banned
+					has_law_or_variant = law_type:law_slavery_banned
 				}
 				ruler = {
 					OR = {
