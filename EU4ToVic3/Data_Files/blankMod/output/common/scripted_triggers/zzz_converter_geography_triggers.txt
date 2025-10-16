@@ -139,8 +139,8 @@ converter_is_converter_confederation_culture = {
 	trigger_if = {
 		limit = {
 			prev.owner = {
-				has_law = law_type:law_multicultural
-				has_law = law_type:law_slavery_banned
+				has_law_or_variant = law_type:law_multicultural
+				has_law_or_variant = law_type:law_slavery_banned
 			}
 		}
 		always = yes
@@ -148,13 +148,17 @@ converter_is_converter_confederation_culture = {
 	trigger_else_if = {
 		limit = {
 			prev.owner = {
-				has_law = law_type:law_cultural_exclusion
-				has_law = law_type:law_slavery_banned
+				has_law_or_variant = law_type:law_cultural_exclusion
+				has_law_or_variant = law_type:law_slavery_banned
 			}
 		}
-		shares_heritage_trait_group_with_any_primary_culture = prev.owner
+		OR = {
+			shares_language_trait_group_with_any_primary_culture = prev.owner
+			shares_heritage_trait_group_with_any_primary_culture = prev.owner
+			shares_tradition_trait_with_any_primary_culture = prev.owner
+		}
 	}
-	trigger_else = { shares_heritage_trait_with_any_primary_culture = prev.owner }
+	trigger_else = { shares_heritage_trait_group_with_any_primary_culture = prev.owner }
 }
 
 converter_should_add_confederation_cultures = {
