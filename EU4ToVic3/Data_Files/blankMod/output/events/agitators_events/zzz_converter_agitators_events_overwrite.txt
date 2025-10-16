@@ -1,4 +1,4 @@
-﻿namespace = dreyfus
+namespace = dreyfus
 namespace = paris_commune_pulse_events
 
 # Dreyfus conviction event
@@ -54,11 +54,11 @@ dreyfus.1 = {
 				}
 			}
 		}
-		ig:ig_armed_forces = {
+		ig:ig_armed_forces ?= {
 			is_marginal = no
 		}
 		NOT = {
-			has_law = law_type:law_multicultural
+			has_law_or_variant = law_type:law_multicultural
 		}
 		NOT = {
 			has_variable = dreyfus_convicted
@@ -112,7 +112,7 @@ dreyfus.1 = {
 			save_scope_as = dreyfus_rival_country_scope
 			set_variable = dreyfus_rival_country_var
 		}
-		ig:ig_armed_forces = {
+		ig:ig_armed_forces ?= {
 			save_scope_as = dreyfus_armed_forces_scope
 		}
 		set_variable = dreyfus_convicted
@@ -129,7 +129,7 @@ dreyfus.1 = {
 		custom_tooltip = {
 			text = dreyfus.1.tt_1
 		}
-		ig:ig_armed_forces = {
+		ig:ig_armed_forces ?= {
 			add_modifier = {
 				name = army_honor_defended
 				days = normal_modifier_time
@@ -163,7 +163,7 @@ dreyfus.1 = {
 		custom_tooltip = {
 			text = dreyfus.1.tt_2
 		}
-		ig:ig_armed_forces = {
+		ig:ig_armed_forces ?= {
 			add_modifier = {
 				name = army_honor_defended
 				days = normal_modifier_time
@@ -185,7 +185,7 @@ dreyfus.1 = {
 		name = dreyfus.1.c
 		highlighted_option = yes
 		trigger = {
-			ig:ig_armed_forces = {
+			ig:ig_armed_forces ?= {
 				is_in_government = no
 			}
 			institution_investment_level = {
@@ -196,7 +196,7 @@ dreyfus.1 = {
 		custom_tooltip = {
 			text = dreyfus.1.tt_3
 		}
-		ig:ig_armed_forces = {
+		ig:ig_armed_forces ?= {
 			add_modifier = {
 				name = dreyfus_subject_of_inquiry
 				days = normal_modifier_time
@@ -251,7 +251,7 @@ dreyfus.2 = {
 			}
 			save_scope_as = alfred_dreyfus_scope
 		}
-		ig:ig_armed_forces = {
+		ig:ig_armed_forces ?= {
 			save_scope_as = dreyfus_armed_forces_scope
 		}
 		###Converter
@@ -292,11 +292,11 @@ dreyfus.2 = {
 		trigger_event = { id = dreyfus.3 days = 7 popup = yes }
 		if = {
 			limit = {
-				ig:ig_armed_forces = {
+				ig:ig_armed_forces ?= {
 					has_modifier = army_honor_defended
 				}
 			}
-			ig:ig_armed_forces = {
+			ig:ig_armed_forces ?= {
 				remove_modifier = army_honor_defended
 			}
 		}
@@ -306,15 +306,15 @@ dreyfus.2 = {
 		trigger_event = { id = dreyfus.3 days = 7 popup = yes }
 		if = {
 			limit = {
-				ig:ig_armed_forces = {
+				ig:ig_armed_forces ?= {
 					has_modifier = dreyfus_autonomous_army
 				}
 			}
-			ig:ig_armed_forces = {
+			ig:ig_armed_forces ?= {
 				remove_modifier = dreyfus_autonomous_army
 			}
 		}
-		ig:ig_armed_forces = {
+		ig:ig_armed_forces ?= {
 			add_modifier = {
 				name = dreyfus_wavering_army
 				days = normal_modifier_time
@@ -354,7 +354,7 @@ dreyfus.3 = {
 			}
 			save_scope_as = alfred_dreyfus_scope
 		}
-		ig:ig_armed_forces = {
+		ig:ig_armed_forces ?= {
 			leader = {
 				save_scope_as = dreyfus_armed_forces_leader_scope
 			}
@@ -986,7 +986,7 @@ paris_commune_pulse_events.9 = {
 			text = communard_effects_header_tt
 		}
 		c:PRC = {
-			ig:ig_devout = {
+			ig:ig_devout ?= {
 				add_modifier = {
 					name = fruit_of_the_loin_modifier
 					days = short_modifier_time
